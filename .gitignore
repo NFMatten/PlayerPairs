@@ -1,3 +1,7 @@
+# Ignored Files
+test_a_function.py
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

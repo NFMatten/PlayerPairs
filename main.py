@@ -43,21 +43,29 @@ def shuffle_deck():
     random.shuffle(deck)
     return deck
     
-# Purpose: 
-def building_player_hand(deck_of_cards):
-    player_hand = []
+# Purpose: Take in a shuffled deck, choose 5 random cards, return built hand
+def building_hand(deck_of_cards):
+    hand_of_cards = []
     count = 0
     while count != 5:
         card = random.choice(deck_of_cards)
-        player_hand.append(card)
+        hand_of_cards.append(card)
         count += 1
-    return player_hand
+    return hand_of_cards
 
+def building_all_players_hands(deck_of_cards):
+    list_of_players = []
+    for player in range(4):
+        player = building_hand(deck_of_cards)
+    
 
 def main():
     shuffled_deck = shuffle_deck()
-    result = building_player_hand(shuffled_deck)
+    result = building_hand(shuffled_deck)
     print(result)
 
     
 main()
+
+
+#sdfasdf

@@ -38,14 +38,26 @@ def build_deck():
     return sorted_deck
 
 # Purpose: Take in (sorted) deck, return shuffled deck
-def shuffle_deck(deck_to_shuffle):
-    random.shuffle(deck_to_shuffle)
-    return deck_to_shuffle
+def shuffle_deck():
+    deck = build_deck()
+    random.shuffle(deck)
+    return deck
+    
+# Purpose: 
+def building_player_hand(deck_of_cards):
+    player_hand = []
+    count = 0
+    while count != 5:
+        card = random.choice(deck_of_cards)
+        player_hand.append(card)
+        count += 1
+    return player_hand
+
 
 def main():
-    deck_to_shuffle = build_deck()
-    shuffled_deck = shuffle_deck(deck_to_shuffle)
-    print(f'Shuffled deck: {shuffled_deck}\n')
+    shuffled_deck = shuffle_deck()
+    result = building_player_hand(shuffled_deck)
+    print(result)
 
-
+    
 main()

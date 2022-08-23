@@ -34,7 +34,6 @@ def build_deck():
             if count == 4:
                 count = 0
                 break
-    #print(f'Sorted Deck:  {sorted_deck}\n')
     return sorted_deck
 
 # Purpose: Take in (sorted) deck, return shuffled deck
@@ -43,21 +42,61 @@ def shuffle_deck():
     random.shuffle(deck)
     return deck
     
-# Purpose: 
-def building_player_hand(deck_of_cards):
-    player_hand = []
+# Purpose: Take in a shuffled deck, choose 5 random cards, return built hand
+def building_hand(deck_of_cards):
+    hand_of_cards = []
     count = 0
     while count != 5:
         card = random.choice(deck_of_cards)
-        player_hand.append(card)
+        hand_of_cards.append(card)
+        deck_of_cards.remove(card)
         count += 1
-    return player_hand
+    return hand_of_cards
 
+def assigning_hand_to_players(list_of_players):
+    deck_of_cards = shuffle_deck()
+    count = 1
+    while count < 5:
+        for index in range(len(list_of_players)):
+            list_of_players[index] = building_hand(deck_of_cards)
+            count += 1
+    return list_of_players
+
+
+def print_player_hands(list_of_players):
+    list_of_players = assigning_hand_to_players(list_of_players)
+    count = 1
+    for player in list_of_players:
+        print(f'Player {count}:\nHand: {player}\nNumber of Pairs: \n')
+        count += 1
+
+def initialize_players():
+    player_1 = []
+    player_2 = []
+    player_3 = []
+    player_4 = []
+    list_of_players = [player_1, player_2, player_3, player_4]
+    return list_of_players
+
+def print_intro():
+    print('''
+Welcome to Player Pairs!
+In this game each player will receive 5 cards.
+Once each hand has been dealt, we will compare to see who has the most pairs!
+    ''')
 
 def main():
-    shuffled_deck = shuffle_deck()
-    result = building_player_hand(shuffled_deck)
-    print(result)
+    list_of_players = initialize_players()
+    print_intro()
+    print_player_hands(list_of_players)
 
-    
+
 main()
+
+
+# Need to add:
+# - Function for string: "Number of pairs: (x)"
+# - Function to determine if hand has pairs
+    # Since values are strings, if player_hand[string1] == player_hand[string2]
+# - Function to determine how many players have a pair
+# - Function to determine who won/tie

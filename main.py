@@ -21,6 +21,15 @@ import random
 (5 points): As a pair player, I want to determine the game’s winner or tied players and display them to the terminal.  
 '''
 
+# Purpose: Print intro to game
+def print_intro():
+    intro = '''
+Welcome to Player Pairs!
+In this game each player will receive 5 cards.
+Once each hand has been dealt, we will compare to see who has the most pairs!
+    '''
+    return intro
+
 # Purpose: From list of individual card values, build and return (sorted) deck. (52 cards)
 def build_deck():
     individual_card_values = ["Ace", '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
@@ -53,6 +62,16 @@ def building_hand(deck_of_cards):
         count += 1
     return hand_of_cards
 
+# Purpose: Initializes 4 players, places them in list and returns list
+def initialize_players():
+    player_1 = []
+    player_2 = []
+    player_3 = []
+    player_4 = []
+    list_of_players = [player_1, player_2, player_3, player_4]
+    return list_of_players
+
+# Purpose: Takes in list of players, assigns built hands to players
 def assigning_hand_to_players(list_of_players):
     deck_of_cards = shuffle_deck()
     count = 1
@@ -62,7 +81,7 @@ def assigning_hand_to_players(list_of_players):
             count += 1
     return list_of_players
 
-
+# Purpose: Takes in list of players, prints string of players hand
 def print_player_hands(list_of_players):
     list_of_players = assigning_hand_to_players(list_of_players)
     count = 1
@@ -70,24 +89,11 @@ def print_player_hands(list_of_players):
         print(f'Player {count}:\nHand: {player}\nNumber of Pairs: \n')
         count += 1
 
-def initialize_players():
-    player_1 = []
-    player_2 = []
-    player_3 = []
-    player_4 = []
-    list_of_players = [player_1, player_2, player_3, player_4]
-    return list_of_players
 
-def print_intro():
-    print('''
-Welcome to Player Pairs!
-In this game each player will receive 5 cards.
-Once each hand has been dealt, we will compare to see who has the most pairs!
-    ''')
-
+# Purpose: Main - run program
 def main():
     list_of_players = initialize_players()
-    print_intro()
+    print(print_intro())
     print_player_hands(list_of_players)
 
 

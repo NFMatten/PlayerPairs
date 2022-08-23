@@ -82,19 +82,28 @@ def assigning_hand_to_players(list_of_players):
     return list_of_players
 
 # Purpose: Takes in list of players, prints string of players hand
-def print_player_hands(list_of_players):
-    list_of_players = assigning_hand_to_players(list_of_players)
+def print_player_hands(players):
+    list_of_players = assigning_hand_to_players(players)
     count = 1
     for player in list_of_players:
-        print(f'Player {count}:\nHand: {player}\nNumber of Pairs: \n')
+        pairs = check_for_pairs(player)
+        print(f'Player {count}:\nHand: {player}\nNumber of Pairs: {pairs}\n')
         count += 1
 
+# Purpose: Checks players hand for pairs, returns amount of pairs in hand
+def check_for_pairs(hand):
+    pairs = [card for card in hand if hand.count(card) > 1]
+    list_of_pairs = list(set(pairs))
+    number_of_pairs = (len(list_of_pairs))
+    return number_of_pairs
 
 # Purpose: Main - run program
 def main():
     list_of_players = initialize_players()
     print(print_intro())
     print_player_hands(list_of_players)
+
+
 
 
 main()

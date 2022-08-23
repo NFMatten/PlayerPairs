@@ -32,7 +32,7 @@ Once each hand has been dealt, we will compare to see who has the most pairs!
 
 # Purpose: From list of individual card values, build and return (sorted) deck. (52 cards)
 def build_deck():
-    individual_card_values = ["Ace", '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
+    individual_card_values = ["Ace", '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King']
     sorted_deck = []
     count = 0
 
@@ -96,33 +96,33 @@ def print_player_hands(players):
 
 # Purpose: Determine who won or tied
 def determine_winner(players):
-    pairs_list = print_player_hands(players)  
-    # pairs_list = [0, 2, 1, 0]
-    # pairs_list = [1, 1, 1, 1]   
-    # pairs_list = [2, 2, 1, 1]
-    # Purpose: chooses largest int from list to select winner or tie between two/more largest ints
-    # Output: Winner is [index] OR Tie amoung [index] and [index], etc    
+    pairs_list = print_player_hands(players)
+    max_pair = max(pairs_list)
+    winners = []
+    for index in range(len(pairs_list)):
+        if pairs_list[index] == max_pair:
+            winners.append(index + 1)
+    return winners
 
+# Purpose: Print winners or tie
+def print_winner(winners_list):
+    winning_string = f"There was a tie among players {winners_list}" if len(winners_list) > 1 else f"Winner is {winners_list[0]}"
+    print(winning_string)
 
 # Purpose: Checks players hand for pairs, returns amount of pairs in hand
 def check_for_pairs(hand):
     pairs = [card for card in hand if hand.count(card) > 1]
     list_of_pairs = list(set(pairs))
     number_of_pairs = (len(list_of_pairs))
-  
     return number_of_pairs
 
 # Purpose: Main - run program
 def main():
     list_of_players = initialize_players()
     print(intro())
-    determine_winner(list_of_players)
-
+    winners = determine_winner(list_of_players)
+    print_winner(winners)
 
 
 
 main()
-
-
-# Need to add:
-# - Function to determine who won/tie

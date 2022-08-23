@@ -22,7 +22,7 @@ import random
 '''
 
 # Purpose: Print intro to game
-def print_intro():
+def intro():
     intro = '''
 Welcome to Player Pairs!
 In this game each player will receive 5 cards.
@@ -83,25 +83,40 @@ def assigning_hand_to_players(list_of_players):
 
 # Purpose: Takes in list of players, prints string of players hand
 def print_player_hands(players):
+    pairs_list = []
     list_of_players = assigning_hand_to_players(players)
     count = 1
     for player in list_of_players:
         pairs = check_for_pairs(player)
+        pairs_list.append(int(pairs))
         print(f'Player {count}:\nHand: {player}\nNumber of Pairs: {pairs}\n')
         count += 1
+    print(f'player pairs {pairs_list}')
+    return pairs_list
+
+# Purpose: Determine who won or tied
+def determine_winner(players):
+    pairs_list = print_player_hands(players)  
+    # pairs_list = [0, 2, 1, 0]
+    # pairs_list = [1, 1, 1, 1]   
+    # pairs_list = [2, 2, 1, 1]
+    # Purpose: chooses largest int from list to select winner or tie between two/more largest ints
+    # Output: Winner is [index] OR Tie amoung [index] and [index], etc    
+
 
 # Purpose: Checks players hand for pairs, returns amount of pairs in hand
 def check_for_pairs(hand):
     pairs = [card for card in hand if hand.count(card) > 1]
     list_of_pairs = list(set(pairs))
     number_of_pairs = (len(list_of_pairs))
+  
     return number_of_pairs
 
 # Purpose: Main - run program
 def main():
     list_of_players = initialize_players()
-    print(print_intro())
-    print_player_hands(list_of_players)
+    print(intro())
+    determine_winner(list_of_players)
 
 
 
@@ -110,8 +125,4 @@ main()
 
 
 # Need to add:
-# - Function for string: "Number of pairs: (x)"
-# - Function to determine if hand has pairs
-    # Since values are strings, if player_hand[string1] == player_hand[string2]
-# - Function to determine how many players have a pair
 # - Function to determine who won/tie

@@ -91,7 +91,6 @@ def print_player_hands(players):
         pairs_list.append(int(pairs))
         print(f'Player {count}:\nHand: {player}\nNumber of Pairs: {pairs}\n')
         count += 1
-    print(f'player pairs {pairs_list}')
     return pairs_list
 
 # Purpose: Determine who won or tied
@@ -106,7 +105,7 @@ def determine_winner(players):
 
 # Purpose: Print winners or tie
 def print_winner(winners_list):
-    winning_string = f"There was a tie among players {winners_list}" if len(winners_list) > 1 else f"Winner is {winners_list[0]}"
+    winning_string = f"There was a tie among players {winners_list}\n" if len(winners_list) > 1 else f"Winner is Player {winners_list[0]}\n"
     print(winning_string)
 
 # Purpose: Checks players hand for pairs, returns amount of pairs in hand
